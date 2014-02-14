@@ -227,7 +227,7 @@ static int affinst_on_finish(unsigned long mpidr,
 	int rc = PSCI_E_SUCCESS;
 	unsigned long linear_id, cpu_setup, cci_setup;
 	mailbox *mboxes;
-	unsigned int gicd_base, gicc_base, reg_val, ectlr;
+	unsigned int gicd_base, gicc_base, ectlr;
 
 	switch (afflvl) {
 
@@ -284,17 +284,7 @@ static int affinst_on_finish(unsigned long mpidr,
 		/* PLAT_TODO: This setup is needed only after a cold boot */
 		gic_pcpu_distif_setup(gicd_base);
 
-		/* Allow access to the System counter timer module */
-		reg_val = (1 << CNTACR_RPCT_SHIFT) | (1 << CNTACR_RVCT_SHIFT);
-		reg_val |= (1 << CNTACR_RFRQ_SHIFT) | (1 << CNTACR_RVOFF_SHIFT);
-		reg_val |= (1 << CNTACR_RWVT_SHIFT) | (1 << CNTACR_RWPT_SHIFT);
-		mmio_write_32(SYS_TIMCTL_BASE + CNTACR_BASE(0), reg_val);
-		mmio_write_32(SYS_TIMCTL_BASE + CNTACR_BASE(1), reg_val);
-
-		reg_val = (1 << CNTNSAR_NS_SHIFT(0)) |
-			(1 << CNTNSAR_NS_SHIFT(1));
-		mmio_write_32(SYS_TIMCTL_BASE + CNTNSAR, reg_val);
-
+		/* PLAT_TODO: Allow access to the System counter timer module */
 		break;
 
 	default:

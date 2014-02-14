@@ -120,22 +120,12 @@
 #define TZNVCTR_BASE		0x7fe70000
 #define TZROOTKEY_BASE		0x7fe80000
 
-/* Memory mapped Generic timer interfaces  */
+/* PLAT_TODO: Memory mapped Generic timer interfaces */
+/* the following definition is used by generic code, but
+ * is platform specific... can be removed once the
+ * referece is removed.
+ */
 #define SYS_CNTCTL_BASE		0x2a430000
-#define SYS_CNTREAD_BASE	0x2a800000
-#define SYS_TIMCTL_BASE		0x2a810000
-
-/* Counter timer module offsets */
-#define CNTNSAR			0x4
-#define CNTNSAR_NS_SHIFT(x)	x
-
-#define CNTACR_BASE(x)		(0x40 + (x << 2))
-#define CNTACR_RPCT_SHIFT	0x0
-#define CNTACR_RVCT_SHIFT	0x1
-#define CNTACR_RFRQ_SHIFT	0x2
-#define CNTACR_RVOFF_SHIFT	0x3
-#define CNTACR_RWVT_SHIFT	0x4
-#define CNTACR_RWPT_SHIFT	0x5
 
 /*******************************************************************************
  * Platform specific per affinity states. Distinction between off and suspend
